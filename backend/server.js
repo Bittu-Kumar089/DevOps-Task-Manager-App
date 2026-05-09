@@ -4,8 +4,10 @@ const cors = require('cors');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB (skip in test mode to allow Jest to import server)
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 const app = express();
 
